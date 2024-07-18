@@ -13,8 +13,12 @@ def main():
     player_tracker = PlayerTracker(model_path='yolov8x')
     player_detections = player_tracker.detect_frames(video_frames)
 
+    # vvv Draw output vvv
+    # Draw player bounding boxes
+    output_video_frames = player_tracker.draw_bboxes(video_frames, player_detections)
 
-    save_video(video_frames, output_video_path)
+
+    save_video(output_video_frames, output_video_path)
 
 
 if __name__ == "__main__":
