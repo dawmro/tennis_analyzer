@@ -21,6 +21,8 @@ def main():
     ball_detections = ball_tracker.detect_frames(frames=video_frames,
                                                      read_from_stub=True,
                                                      stub_path=f"tracker_stubs/ball_detections.pkl")
+    ball_detections = ball_tracker.interpolate_ball_positions(ball_detections)
+
     
     # Detect court lines
     court_model_path = f"models/keypoints_model.pth"
