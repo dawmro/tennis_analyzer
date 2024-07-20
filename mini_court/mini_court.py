@@ -108,6 +108,15 @@ class MiniCourt():
             y = int(self.drawing_key_points[i+1])
             cv2.circle(frame, (x,y), 5, (0, 0, 255), cv2.FILLED)
 
+        # draw lines
+        for line in self.lines:
+            # 0 -> 0,1
+            # 1 -> 2,3
+            # 2 -> 4,5 
+            start_point = (int(self.drawing_key_points[line[0]*2]), int(self.drawing_key_points[line[0]*2+1]))
+            end_point = (int(self.drawing_key_points[line[1]*2]), int(self.drawing_key_points[line[1]*2+1]))
+            cv2.line(frame, start_point, end_point, (0, 0, 0), 2)
+
         return frame
 
 
