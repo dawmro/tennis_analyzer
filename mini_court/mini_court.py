@@ -117,6 +117,11 @@ class MiniCourt():
             end_point = (int(self.drawing_key_points[line[1]*2]), int(self.drawing_key_points[line[1]*2+1]))
             cv2.line(frame, start_point, end_point, (0, 0, 0), 2)
 
+        # draw net
+        net_start_position = (self.drawing_key_points[0]-10, int((self.drawing_key_points[1] + self.drawing_key_points[5])/2))
+        net_end_position = (self.drawing_key_points[2]+10, int((self.drawing_key_points[1] + self.drawing_key_points[5])/2))
+        cv2.line(frame, net_start_position, net_end_position, (255, 0, 0), 2)
+
         return frame
 
 
