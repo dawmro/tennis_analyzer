@@ -30,6 +30,7 @@ def main():
     
     # Detect court lines
     court_model_path = f"models/keypoints_model.pth"
+    
     court_line_detector = CourtLineDetector(court_model_path)
     court_keypoints = court_line_detector.predict(video_frames[0])
 
