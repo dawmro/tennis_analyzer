@@ -52,12 +52,14 @@ def main():
     # Draw player bounding boxes
     output_video_frames = player_tracker.draw_bboxes(video_frames, player_detections)
     # Draw ball bounding boxes
-    output_video_frames = ball_tracker.draw_bboxes(video_frames, ball_detections)
+    output_video_frames = ball_tracker.draw_bboxes(output_video_frames, ball_detections)
     # Draw court keypoints
-    output_video_frames = court_line_detector.draw_keypoints_on_video(video_frames, court_keypoints)
+    output_video_frames = court_line_detector.draw_keypoints_on_video(output_video_frames, court_keypoints)
 
     # draw mini court
-    output_video_frames = mini_court.draw_mini_court(video_frames)
+    output_video_frames = mini_court.draw_mini_court(output_video_frames)
+    output_video_frames = mini_court.draw_points_on_mini_court(output_video_frames, player_mini_court_detections, color = (0, 0, 255))
+    output_video_frames = mini_court.draw_points_on_mini_court(output_video_frames, ball_mini_court_detections, color = (0, 255, 255))
 
     # draw frame number
     for i, frame in enumerate(output_video_frames):

@@ -112,7 +112,7 @@ class MiniCourt():
         for i in range(0, len(self.drawing_key_points), 2):
             x = int(self.drawing_key_points[i])
             y = int(self.drawing_key_points[i+1])
-            cv2.circle(frame, (x,y), 5, (0, 0, 255), cv2.FILLED)
+            cv2.circle(frame, (x,y), 5, (255, 0, 255), cv2.FILLED)
 
         # draw lines
         for line in self.lines:
@@ -189,7 +189,7 @@ class MiniCourt():
         mini_court_x_distance_in_pixels = self.convert_meters_to_pixels(distance_from_keypoint_x_meters)
         mini_court_y_distance_in_pixels = self.convert_meters_to_pixels(distance_from_keypoint_y_meters)
         closest_mini_court_keypoint = (self.drawing_key_points[closest_key_point_index*2],
-                                       self.drawing_key_points[closest_key_point_index*2]+1
+                                       self.drawing_key_points[closest_key_point_index*2+1]
                                        )
         
         # get last position by adding distance in pixels to mini court position 
@@ -259,6 +259,17 @@ class MiniCourt():
             output_player_boxes.append(output_player_bboxes_dict)
 
         return output_player_boxes, output_ball_boxes
+    
+
+    def draw_points_on_mini_court(self, frames, positions, color=(0, 255, 0)):
+        for frame_num, frame in enumerate(frames):
+            for player_id, position in positions[frame_num].items():
+                x,y = position
+                x = int(x)
+                y = int(y)
+                cv2.circle(frame, (x,y), 5, color, -1)
+        
+        return frames
 
 
 
